@@ -21,6 +21,7 @@ def earliest_ancestor(ancestors, starting_node):
       if not a[1] in relationships:
         relationships[a[1]] = set()
       relationships[a[1]].add(a[0])
+      
       if not a[0] in relationships:
         relationships[a[0]] = set()
 
@@ -28,8 +29,12 @@ def earliest_ancestor(ancestors, starting_node):
     if len(relationships[starting_node]) == 0:
       return -1
 
+    #traversal
     s = Stack()
+
+    #current_path
     path = Stack()
+    
     paths = []
     visited = set()
     s.push(starting_node)

@@ -83,7 +83,36 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        
+        # Create an empty Q and ENQ to the starting vertex
+        qq = Queue()
+        qq.enqueue([starting_vertex])
+        # Create empty set to store visted nodes
+        visited = set()
+        # while Q is not empty:
+        while qq.size() > 0:
+            # DQ the first one
+            path = qq.dequeue()
+            # get the last vertex
+            vertex = path[-1]
+            # if vertex is equal destination
+            if vertex is destination_vertex:
+                #return path
+                return path
+            # if the vertex has not been visited
+            if vertex not in visited:
+                # mark it visted
+                visited.add(vertex)
+                print('BFS:', vertex)
+                # add the adjacents to all of them
+                for next_vert in self.vertices[vertex]:
+                    # make a copy of path
+                    copy_path = list(path)
+                    # Append adjacents to the back of it
+                    copy_path.append(next_vert)
+                    # ENQ copy_path
+                    qq.enqueue(copy_path)
+
     def dfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing a path from
